@@ -20,6 +20,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+        # Format: 'executable_name = package_name.module_name:main'
+        'pose_listener = my_turtle_controller.pose_subscriber:main',
+        'square_driver = my_turtle_controller.square_publisher:main',
         ],
     },
 )
