@@ -1,0 +1,51 @@
+{
+	"name": "ROS 2 Humble Simulation Codespace",
+
+	// Use the Dockerfile in the same directory
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": "."
+	},
+
+	// Forward the noVNC web port (6080)
+	"forwardPorts": [6080],
+
+	// Optional: Map the forwarded port to a specific name and open preview
+	"portsAttributes": {
+		"6080": {
+			"label": "noVNC GUI",
+			"onAutoForward": "openPreview" // Options: openPreview, openBrowser, ignore, notify
+		}
+	},
+
+	// Run the VNC startup script in the background after the container is created and ready
+	// This starts Xvfb, Fluxbox, x11vnc, and websockify
+	"postStartCommand": "/usr/local/bin/start-vnc.sh",
+
+	// Optional: Customize VS Code settings within the Codespace
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"terminal.integrated.shell.linux": "/bin/bash"
+			},
+			// Recommended VS Code extensions
+			"extensions": [
+				"ms-vscode.cpptools",        // C/C++ language support
+				"ms-python.python",          // Python language support
+				"ms-iot.vscode-ros",         // ROS extension pack (syntax highlighting, etc.)
+				"redhat.vscode-xml",         // XML editing (useful for URDF, launch files)
+				"dotjoshjohnson.xml"       // Another XML tool, sometimes helpful
+			]
+		}
+	},
+
+	// Use root user (common in Docker/ROS setups, adjust if needed)
+	"remoteUser": "root",
+
+        // Request more resources if needed (might require paid GitHub plan)
+        "hostRequirements": {
+            "cpus": 4,
+            "memory": "16gb",
+            "storage": "32gb"
+        }
+}

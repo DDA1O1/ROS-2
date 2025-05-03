@@ -1,0 +1,7 @@
+# Ignore build and log files
+build/
+log/
+
+# Ignore files containing secrets
+build/my_turtle_controller/colcon_command_prefix_setup_py.sh.env
+log/build_*/events.log
